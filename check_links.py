@@ -59,7 +59,7 @@ EXT_DELAY    = 0.15 # seconds between requests per thread (politeness)
 USER_AGENT = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
     "AppleWebKit/537.36 (KHTML, like Gecko) "
-    "Chrome/122.0 Safari/537.36 bee-docs-link-checker/2.0"
+    "Chrome/122.0 Safari/537.36 docusaurus-link-checker/1.0"
 )
 
 # Schemes to collect for external checking (everything http/https)
