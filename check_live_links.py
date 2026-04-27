@@ -55,10 +55,7 @@ IGNORE_HOSTS   = ("localhost", "127.0.0.1", "192.168.", "10.0.", "0.0.0.0")
 IGNORE_HOST_SUFFIXES = (".example", ".local", ".invalid", ".test")
 
 # URL substrings to silently ignore — systematic redirects that aren't actionable doc fixes.
-# e.g. every page has an "Edit this page" link using the old GitHub repo name.
-IGNORE_URL_PATTERNS = (
-    "github.com/ethersphere/docs.github.io",  # "Edit this page" links using old repo name
-)
+IGNORE_URL_PATTERNS = ()
 
 # Hostnames to ignore because they are example/template values in documentation
 IGNORE_EXAMPLE_HOSTS = (
