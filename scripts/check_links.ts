@@ -89,7 +89,7 @@ const NPM = process.platform === 'win32' ? 'npm.cmd' : 'npm';
 // Helpers — markdown link extraction
 // ─────────────────────────────────────────────
 
-function stripCodeBlocks(content: string): string {
+export function stripCodeBlocks(content: string): string {
   content = content.replace(/<!--[\s\S]*?-->/g, '');
   content = content.replace(/```[^\n]*\n[\s\S]*?```/g, '');
   content = content.replace(/~~~[^\n]*\n[\s\S]*?~~~/g, '');
@@ -97,7 +97,7 @@ function stripCodeBlocks(content: string): string {
   return content;
 }
 
-function extractMdLinks(content: string): MdLink[] {
+export function extractMdLinks(content: string): MdLink[] {
   content = stripCodeBlocks(content);
   const links: MdLink[] = [];
 
@@ -1176,8 +1176,7 @@ function sleep(ms: number): Promise<void> { return new Promise((r) => setTimeout
 // Arg parser
 // ─────────────────────────────────────────────
 
-function parseArgs(): ParsedArgs {
-  const argv = process.argv.slice(2);
+export function parseArgs(argv: string[] = process.argv.slice(2)): ParsedArgs {
   const args: ParsedArgs = {};
   for (let i = 0; i < argv.length; i++) {
     if (argv[i].startsWith('--')) {
@@ -1282,4 +1281,6 @@ async function main(): Promise<void> {
   );
 }
 
-main().catch((e) => { console.error(e); process.exit(1); });
+if (require.main === module) {
+  main().catch((e) => { console.error(e); process.exit(1); });
+}

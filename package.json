@@ -6,7 +6,8 @@
   "scripts": {
     "build": "tsc",
     "check": "tsx scripts/check_links.ts",
-    "check:live": "tsx scripts/check_live_links.ts"
+    "check:live": "tsx scripts/check_live_links.ts",
+    "test": "node --require tsx/cjs --test \"scripts/*.test.ts\""
   },
   "bin": {
     "check-links": "./dist/scripts/check_links.js",
