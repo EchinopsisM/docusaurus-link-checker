@@ -1,3 +1,4 @@
 link-reports/
-__pycache__/
-*.pyc
+node_modules/
+dist/
+bee-docs/
