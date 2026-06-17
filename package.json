@@ -1,0 +1,25 @@
+{
+  "name": "docusaurus-link-checker",
+  "version": "2.0.0",
+  "description": "Link checker for Docusaurus sites",
+  "main": "dist/scripts/check_links.js",
+  "scripts": {
+    "build": "tsc",
+    "check": "tsx scripts/check_links.ts",
+    "check:live": "tsx scripts/check_live_links.ts",
+    "test": "node --require tsx/cjs --test \"scripts/*.test.ts\""
+  },
+  "bin": {
+    "check-links": "./dist/scripts/check_links.js",
+    "check-live-links": "./dist/scripts/check_live_links.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0"
+  },
+  "license": "MIT"
+}

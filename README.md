@@ -1,6 +1,13 @@
 # Docusaurus Link Checker
 
-A Python link checker for [Docusaurus](https://docusaurus.io/) sites. Checks internal links against your local build output and optionally checks all external URLs with real HTTP requests.
+A link checker for [Docusaurus](https://docusaurus.io/) sites. Checks internal links against your local build output and optionally checks all external URLs with real HTTP requests.
+
+Available in two versions — use whichever fits your stack:
+
+| Version | Entry point | Runtime |
+|---|---|---|
+| Node.js | `check_links.js` | Node 18+ |
+| Python | `check_links.py` | Python 3.8+ |
 
 ## Features
 
@@ -17,24 +24,27 @@ A Python link checker for [Docusaurus](https://docusaurus.io/) sites. Checks int
 
 ## Requirements
 
-- Python 3.8+
-- Your Docusaurus project (for local mode, `npm` must be available)
+**Node.js version:**
+- Node.js 18+
+- No npm packages required — uses only the Node standard library
 
-No third-party Python packages required — uses only the standard library.
+**Python version:**
+- Python 3.8+
+- No third-party packages required — uses only the standard library
 
 ## Setup
 
-Clone this repo alongside your Docusaurus project, or copy the two scripts directly into your project:
+Clone this repo alongside your Docusaurus project, or copy the scripts directly into your project:
 
 ```bash
 git clone https://github.com/NoahMaizels/docusaurus-link-checker.git
 ```
 
-Or add it as a npm script in your `package.json`:
+Or add it as a script in your `package.json`:
 
 ```json
 "scripts": {
-  "check:links": "python /path/to/check_links.py"
+  "check:links": "node /path/to/check_links.js"
 }
 ```
 
@@ -43,6 +53,11 @@ Or add it as a npm script in your `package.json`:
 Run from your **Docusaurus project root**:
 
 ```bash
+# Node.js
+cd /path/to/your-docs-project
+node /path/to/check_links.js
+
+# Python
 cd /path/to/your-docs-project
 python /path/to/check_links.py
 ```
@@ -52,8 +67,8 @@ You will be prompted to choose local or live mode.
 ### Options
 
 ```
-python check_links.py [--mode local|live] [--site-domain your-site.com]
-                      [--no-external] [--threads N]
+node check_links.js [--mode local|live] [--site-domain your-site.com]
+                    [--no-external] [--threads N]
 ```
 
 | Flag | Description |
@@ -62,13 +77,13 @@ python check_links.py [--mode local|live] [--site-domain your-site.com]
 | `--mode live` | Crawl the live site |
 | `--site-domain` | Your site's domain, e.g. `docs.mysite.com`. Auto-detected from `docusaurus.config.*` if omitted. Used to check self-referential links against the local build. |
 | `--no-external` | Skip external URL checking (local mode only) |
-| `--threads N` | Number of concurrent HTTP threads (default: 8) |
+| `--threads N` | Number of concurrent HTTP requests (default: 8) |
 
 ### Local mode example
 
 ```bash
 cd ~/my-docs
-python ~/docusaurus-link-checker/check_links.py --mode local --site-domain docs.mysite.com
+node ~/docusaurus-link-checker/check_links.js --mode local --site-domain docs.mysite.com
 ```
 
 The script will:
@@ -82,7 +97,7 @@ The script will:
 ### Live mode example
 
 ```bash
-python ~/docusaurus-link-checker/check_links.py --mode live --site-domain docs.mysite.com
+node ~/docusaurus-link-checker/check_links.js --mode live --site-domain docs.mysite.com
 ```
 
 Fetches `https://docs.mysite.com/sitemap.xml`, crawls every page, and checks all links found.
@@ -112,3 +127,4 @@ link-reports/
 - Links inside HTML comments and code blocks are ignored
 - Localhost and private IP addresses are always skipped
 - The `link-reports/` directory should be added to `.gitignore`
+- Works on Windows, macOS, and Linux
